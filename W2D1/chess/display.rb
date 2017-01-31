@@ -16,9 +16,9 @@ class Display
   end
 
   def render
-    string = "\n"
+    string = "  0 1 2 3 4 5 6 7\n".colorize(:magenta)
     for i in 0...8 do
-      row = ""
+      row = "#{i.to_s.colorize(:magenta)} "
       for j in 0...8 do
         char = @board[[i, j]].to_s
 

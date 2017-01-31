@@ -9,7 +9,7 @@ class Board
   KING_POSITIONS = [[0, 4], [7, 4]]
 
   def initialize
-    @grid = Array.new(8) { Array.new(8) }
+    @grid = Array.new(8) { Array.new(8) { NullPiece.instance } }
     populate_grid
   end
 
@@ -28,11 +28,11 @@ class Board
       @grid[6][col] = Pawn.new([6, col], self, :white)
     end
 
-    for i in 2..5 do
-      for j in 0...8 do
-        @grid[i][j] = NullPiece.instance
-      end
-    end
+    # for i in 2..5 do
+    #   for j in 0...8 do
+    #     @grid[i][j] = NullPiece.instance
+    #   end
+    # end
 
     p @grid[0][1].moves
   end
