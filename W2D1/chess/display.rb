@@ -20,10 +20,10 @@ class Display
     for i in 0...8 do
       row = ""
       for j in 0...8 do
-        char = @board[[i, j]].nil? ? "* " : @board[[i, j]].to_s
+        char = @board[[i, j]].to_s
 
         char = colorize_char(char, [i, j])
-
+        char << " "
         row << char
       end
 
@@ -36,15 +36,11 @@ class Display
   def colorize_char(char, pos)
     if pos == @cursor.cursor_pos
       if @cursor.selected
-        char = char.colorize(:green)
+        char = char.colorize(:background => :light_cyan)
       else
-        char = char.colorize(:red)
+        char = char.colorize(:background => :light_white)
       end
-    else
-      char = char.colorize(:blue)
     end
+    char
   end
 end
-
-b = Board.new
-d = Display.new(b)
