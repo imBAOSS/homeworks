@@ -15,4 +15,8 @@ class Rook < Piece
     @name = "R"
     super
   end
+
+  def moves
+    moves_arr = SlidingPiece::moves(DIRS, @pos, @board, self)
+  end
 end
