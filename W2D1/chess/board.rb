@@ -68,12 +68,30 @@ class Board
   end
 
   def []=(pos, value)
-    @grid[pos[0]][pos[1]] = value
+    @grid[pos[0]][pos[1]] = value unless @grid[pos[0]][pos[1]].nil?
   end
 
   def in_bounds?(pos)
     x,y = pos
     x.between?(0,7) && y.between?(0,7)
+  end
+
+  def in_check?(color)
+    opposite_color = (color == :white) ? :black : :white
+    opposite_pieces = []
+    king = nil
+
+    @grid.flatten.each do |piece|
+      opposite_pieces << piece if piece.color == opposite_color
+      king = piece if piece.color == color && piece.instance_of?(King)
+    end
+
+    opposite_pieces.any? do |piece|
+      piece.moves.include?(king.pos)
+    end
+  end
+
+  def checkmate?(color)
   end
 end
 

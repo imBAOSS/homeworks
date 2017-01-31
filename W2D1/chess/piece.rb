@@ -30,6 +30,7 @@ class Piece
   end
 
   def opponent?(other_piece)
+    return false if other_piece.nil?
     return false if self.color == :null || other_piece.color == :null
     self.color != other_piece.color
   end
