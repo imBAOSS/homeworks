@@ -165,11 +165,14 @@ def permutations(array)
 
   perms.each do |perm|
     (0..perm.length).each do |i|
-      total_permutations << perm[0 ... i] + [first] + perm[i .. -1]
+      total_permutations << perm.take(i) + [first] + perm.drop(i)
     end
   end
   total_permutations
 end
+
+p permutations([1, 2, 3, 4])
+
 
 def merge_sort(arr)
   return arr if arr.size < 2
