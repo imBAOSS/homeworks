@@ -36,10 +36,8 @@ class Board
       current_pos = 0 if current_pos > 13
 
       if current_player_name == @name1
-        # logic for placing in all cups except 13
         distribute_stones(current_pos) unless current_pos == 13
       else
-        # logic for placing in all cups except 6
         distribute_stones(current_pos) unless current_pos == 6
       end
     end
@@ -75,8 +73,21 @@ class Board
   end
 
   def one_side_empty?
+    player_one_side = @cups[0..5].all? { |cup| cup.empty? }
+    player_two_side = @cups[7..12].all? { |cup| cup.empty? }
+    player_one_side || player_two_side
   end
 
   def winner
+    player_one_points = @cups[6].length
+    player_two_points = @cups[13].length
+
+    if player_one_points == player_two_points
+      :draw
+    elsif player_one_points > player_two_points
+      @name1
+    else
+      @name2
+    end
   end
 end
