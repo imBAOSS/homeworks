@@ -7,7 +7,7 @@ module SlidingPiece
       x, y = dir
       new_pos = [r + x, c + y]
 
-      until !board.in_bounds?(new_pos) || !board[new_pos].instance_of?(NullPiece)
+      while board.in_bounds?(new_pos) && board[new_pos].instance_of?(NullPiece)
         moves_arr << new_pos
         new_pos = [new_pos[0] + x, new_pos[1] + y]
       end

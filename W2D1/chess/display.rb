@@ -3,22 +3,18 @@ require_relative "cursor"
 require_relative "board"
 
 class Display
+  attr_accessor :cursor
   def initialize(board)
     @cursor = Cursor.new([0, 0], board)
     @board = board
-    render
-    @cursor.get_input
-    render
-    @cursor.get_input
-    render
-    @cursor.get_input
-    render
   end
 
   def render
-    string = "  0 1 2 3 4 5 6 7\n".colorize(:magenta)
+    system("clear")
+    string = "    0 1 2 3 4 5 6 7\n".colorize(:magenta)
+    string += "    a b c d e f g h\n".colorize(:magenta)
     for i in 0...8 do
-      row = "#{i.to_s.colorize(:magenta)} "
+      row = "#{(i.to_s + " " + (8 - i).to_s).colorize(:magenta)} "
       for j in 0...8 do
         char = @board[[i, j]].to_s
 

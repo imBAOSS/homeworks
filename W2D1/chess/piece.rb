@@ -1,7 +1,8 @@
 require 'colorize'
 
 class Piece
-  attr_reader :pos, :board, :color
+  attr_reader :board, :color
+  attr_accessor :pos
 
   def initialize(pos, board, color)
     @pos = pos
@@ -11,14 +12,22 @@ class Piece
 
   def moves
   end
-
-  def valid_pos?(pos)
-    @board[pos].color != @color
-  end
+  # 
+  # def valid_pos?(pos)
+  #
+  # end
 
   def valid_moves
     board_copy = Board.deep_dup(@board)
-
+    moves_arr = self.moves
+    new_moves_arr = []
+    moves_arr.each do |move|
+      old_position = @pos.dup
+      board_copy.move_piece!(old_position, move)
+      new_moves_arr << move unless board_copy.in_check?(@color)
+      board_copy.move_piece!(move, old_position)
+    end
+    new_moves_arr
   end
 
   def move_into_check?(end_pos)

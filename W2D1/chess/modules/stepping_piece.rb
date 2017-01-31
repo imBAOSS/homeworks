@@ -8,7 +8,8 @@ module SteppingPiece
 
       new_pos = [new_r, new_c]
 
-      moves_arr << new_pos if board.in_bounds?(new_pos) && piece.valid_pos?(new_pos)
+      valid_pos = board.in_bounds?(new_pos) && board[pos].color != piece.color
+      moves_arr << new_pos if valid_pos
     end
 
     moves_arr
