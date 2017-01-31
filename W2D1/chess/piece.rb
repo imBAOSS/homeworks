@@ -17,6 +17,11 @@ class Piece
   end
 
   def valid_moves
+    board_copy = Board.deep_dup(@board)
+
+  end
+
+  def move_into_check?(end_pos)
   end
 
   def to_s

@@ -2,15 +2,16 @@ require_relative "piece"
 require_relative "pieces/piece_require"
 
 class Board
+  attr_accessor :grid
   ROOK_POSITIONS = [[0, 0], [0, 7], [7, 0], [7, 7]]
   KNIGHT_POSITIONS = [[0, 1], [0, 6], [7, 1], [7, 6]]
   BISHOP_POSITIONS = [[0, 2], [0, 5], [7, 2], [7, 5]]
   QUEEN_POSITIONS = [[0, 3], [7, 3]]
   KING_POSITIONS = [[0, 4], [7, 4]]
 
-  def initialize
+  def initialize(create_empty = false)
     @grid = Array.new(8) { Array.new(8) { NullPiece.instance } }
-    populate_grid
+    populate_grid unless create_empty
   end
 
   def populate_grid
@@ -27,14 +28,6 @@ class Board
     @grid[6].each.with_index do |space, col|
       @grid[6][col] = Pawn.new([6, col], self, :white)
     end
-
-    # for i in 2..5 do
-    #   for j in 0...8 do
-    #     @grid[i][j] = NullPiece.instance
-    #   end
-    # end
-
-    p @grid[0][1].moves
   end
 
   def populate_piece(positions, piece_type)
@@ -92,6 +85,37 @@ class Board
   end
 
   def checkmate?(color)
+    return false unless in_check?(color)
+
+    @grid.flatten.all? do |piece|
+      next if piece.color != color
+      piece.valid_moves.empty?
+    end
+  end
+
+  def self.deep_dup(board)
+    new_board = Board.new(true)
+    # for i in 0...8 do
+    #   for j in 0...8 do
+    #     old_piece = board[[i,j]]
+    #     if old_piece.instance_of?(NullPiece)
+    #       new_board[[i, j]] = old_piece
+    #     else
+    #       new_board[[i, j]] = old_piece.class.new(old_piece.pos, new_board, old_piece.color)
+    #     end
+    #   end
+    # end
+
+    new_board.grid = board.grid.flatten.map do |old_piece|
+      if old_piece.instance_of?(NullPiece)
+        old_piece
+      else
+        old_piece.class.new(old_piece.pos.dup, new_board, old_piece.color)
+      end
+    end
+    new_board.grid = new_board.grid.each_slice(8).to_a
+
+    new_board
   end
 end
 
