@@ -1,10 +1,11 @@
 class Board
-  attr_accessor :cups, :name1, :name2
+  attr_accessor :cups, :name1, :name2, :stones
 
   def initialize(name1, name2)
     @cups = Array.new(14) { [] }
     @name1 = name1
     @name2 = name2
+    @stones = []
     place_stones
   end
 
@@ -24,8 +25,25 @@ class Board
   end
 
   def make_move(start_pos, current_player_name)
-    stones = @cups[start_pos]
+    current_pos = start_pos
+    @stones = @cups[start_pos]
     @cups[start_pos] = []
+    until @stones.empty?
+      current_pos += 1
+      current_pos = 0 if current_pos > 13
+
+      if current_player_name == @name1
+        # logic for placing in all cups except 13
+        place_stones(current_pos) unless current_pos == 13
+      else
+        # logic for placing in all cups except 6
+        place_stones(current_pos) unless current_pos == 6
+      end
+    end
+  end
+
+  def place_stones(pos)
+    @cups[pos] << @stones.unshift
   end
 
   def next_turn(ending_cup_idx)
