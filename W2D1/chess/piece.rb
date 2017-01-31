@@ -1,16 +1,31 @@
-class Piece
+require 'colorize'
 
-  def initialize
-    @name = "P "
+class Piece
+  attr_reader :pos, :board, :color
+
+  def initialize(pos, board, color)
+    @pos = pos
+    @board = board
+    @color = color
   end
 
   def moves
+  end
+
+  def valid_pos?(pos)
+    @board[pos].color != @color
   end
 
   def valid_moves
   end
 
   def to_s
-    @name
+    if @color == :white
+      return @name.colorize(:red)
+    elsif @color == :black
+      return @name.colorize(:green)
+    else
+      return @name.colorize(:light_black)
+    end
   end
 end
