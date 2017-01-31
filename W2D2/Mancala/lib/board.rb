@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Board
   attr_accessor :cups, :name1, :name2, :stones
 
@@ -28,26 +30,40 @@ class Board
     current_pos = start_pos
     @stones = @cups[start_pos]
     @cups[start_pos] = []
+
     until @stones.empty?
       current_pos += 1
       current_pos = 0 if current_pos > 13
 
       if current_player_name == @name1
         # logic for placing in all cups except 13
-        place_stones(current_pos) unless current_pos == 13
+        distribute_stones(current_pos) unless current_pos == 13
       else
         # logic for placing in all cups except 6
-        place_stones(current_pos) unless current_pos == 6
+        distribute_stones(current_pos) unless current_pos == 6
       end
     end
+
+    render
+    next_turn(current_pos, current_player_name)
+    # next_turn
   end
 
-  def place_stones(pos)
-    @cups[pos] << @stones.unshift
+  def distribute_stones(pos)
+    @cups[pos] << @stones.shift
   end
 
-  def next_turn(ending_cup_idx)
+  def next_turn(ending_cup_index, current_player)
     # helper method to determine what #make_move returns
+    if ending_cup_index == 6 && current_player == @name1
+      :prompt
+    elsif ending_cup_index == 13 && current_player == @name2
+      :prompt
+    elsif @cups[ending_cup_index].length == 1
+      :switch
+    else
+      ending_cup_index
+    end
   end
 
   def render
