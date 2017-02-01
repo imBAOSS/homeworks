@@ -16,7 +16,8 @@ class Knight < Piece
   ]
 
   def initialize(pos, board, color)
-    @name = "N"
+    @name = (color == :white) ? "\u2658" : "\u265E"
+    @name = @name.encode("utf-8")
     super
   end
 

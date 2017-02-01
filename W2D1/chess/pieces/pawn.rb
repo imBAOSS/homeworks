@@ -14,7 +14,8 @@ class Pawn < Piece
     [1, 1]
   ]
   def initialize(pos, board, color)
-    @name = "P"
+    @name = (color == :white) ? "\u2659" : "\u265F"
+    @name = @name.encode("utf-8")
     @home_row = (color == :white) ? 6 : 1
     @all_possible_moves = (color == :white) ? WHITE_MOVES : BLACK_MOVES
     super

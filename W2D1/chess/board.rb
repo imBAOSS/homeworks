@@ -22,11 +22,11 @@ class Board
     populate_piece(KING_POSITIONS, King)
 
     @grid[1].each.with_index do |space, col|
-      self[1, col] = Pawn.new([1, col], self, :black)
+      self[[1, col]] = Pawn.new([1, col], self, :black)
     end
 
     @grid[6].each.with_index do |space, col|
-      self[6, col] = Pawn.new([6, col], self, :white)
+      self[[6, col]] = Pawn.new([6, col], self, :white)
     end
   end
 
