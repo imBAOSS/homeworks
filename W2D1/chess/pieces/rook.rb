@@ -12,7 +12,8 @@ class Rook < Piece
   ]
 
   def initialize(pos, board, color)
-    @name = "R"
+    @name = (color == :white) ? "\u2656" : "\u265C"
+    @name = @name.encode("utf-8")
     super
   end
 

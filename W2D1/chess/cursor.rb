@@ -32,7 +32,8 @@ MOVES = {
 
 class Cursor
 
-  attr_reader :cursor_pos, :board, :selected
+  attr_reader :board, :selected
+  attr_accessor :cursor_pos
 
   def initialize(cursor_pos, board)
     @cursor_pos = cursor_pos
@@ -43,6 +44,10 @@ class Cursor
   def get_input
     key = KEYMAP[read_char]
     handle_key(key)
+  end
+
+  def toggle_selected
+    @selected = !@selected
   end
 
   private
@@ -80,7 +85,7 @@ class Cursor
 
     case key
     when :return, :space
-      toggle_selected
+      # toggle_selected
       return @cursor_pos
     when :left, :right, :up, :down
       diff = MOVES[key]
@@ -101,7 +106,4 @@ class Cursor
     end
   end
 
-  def toggle_selected
-    @selected = !@selected
-  end
 end

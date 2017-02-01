@@ -16,7 +16,8 @@ class Queen < Piece
   ]
 
   def initialize(pos, board, color)
-    @name = "Q"
+    @name = (color == :white) ? "\u2655" : "\u265B"
+    @name = @name.encode("utf-8")
     super
   end
 

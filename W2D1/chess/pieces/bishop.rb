@@ -12,7 +12,8 @@ class Bishop < Piece
   ]
 
   def initialize(pos, board, color)
-    @name = "B"
+    @name = (color == :white) ? "\u2657" : "\u265D"
+    @name = @name.encode("utf-8")
     super
   end
 

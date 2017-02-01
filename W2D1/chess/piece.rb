@@ -12,7 +12,7 @@ class Piece
 
   def moves
   end
-  # 
+  #
   # def valid_pos?(pos)
   #
   # end
@@ -34,13 +34,14 @@ class Piece
   end
 
   def to_s
-    if @color == :white
-      return @name.colorize(:red)
-    elsif @color == :black
-      return @name.colorize(:green)
-    else
-      return @name.colorize(:light_black)
-    end
+    @color == :null ? @name.colorize(:light_black) : @name.chomp
+    # if @color == :white
+    #   return @name.colorize(:red)
+    # elsif @color == :black
+    #   return @name.colorize(:green)
+    # else
+    #   return @name.colorize(:light_black)
+    # end
   end
 
   def opponent?(other_piece)

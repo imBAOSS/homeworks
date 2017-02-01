@@ -7,7 +7,8 @@ class King < Piece
   DELTAS = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1]]
 
   def initialize(pos, board, color)
-    @name = "K"
+    @name = (color == :white) ? "\u2654" : "\u265A"
+    @name = @name.encode("utf-8")
     super
   end
 
