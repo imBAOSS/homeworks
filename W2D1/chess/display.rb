@@ -25,8 +25,11 @@ class Display
         char = " "
         char << @board[[i, j]].to_s
         char << " "
-        char = char.colorize(:background => :light_white) if (i + j) % 2 == 1
-
+        if (i + j) % 2 == 1
+          char = char.colorize(:background => :light_white)
+        else
+          char = char.colorize(:background => :white)
+        end
         char = colorize_char(char, [i, j])
 
 
