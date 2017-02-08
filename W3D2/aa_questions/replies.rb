@@ -80,8 +80,33 @@ class Reply
         reply_id = ?
     SQL
     return "No child replies" if replies.empty?
-    
+
     replies.map { |reply| Reply.new(reply) }
+  end
+
+  def save
+
+    if @id
+      #update
+      #grab
+      QuestionsDatabase.instance.execute(<<-SQL, @body, @question_id, @user_id, @reply_id, @id)
+        UPDATE
+          replies
+        SET
+          body = ?, question_id = ?, user_id = ?, reply_id = ?
+        WHERE
+          id = ?
+      SQL
+    else
+      #insert
+      QuestionsDatabase.instance.execute(<<-SQL, @body, @question_id, @user_id, @reply_id)
+        INSERT INTO
+          replies (body, question_id, user_id, reply_id)
+        VALUES
+          (?, ?, ?, ?)
+      SQL
+      @id = QuestionsDatabase.instance.last_insert_row_id
+    end
   end
 
 end

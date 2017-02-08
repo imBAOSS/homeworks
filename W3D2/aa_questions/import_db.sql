@@ -103,4 +103,8 @@ VALUES
   ((SELECT id FROM users WHERE fname = 'bob' AND lname = 'jones'),
     (SELECT id FROM questions WHERE title = 'question C')),
   ((SELECT id FROM users WHERE fname = 'jane' AND lname = 'doe'),
-    (SELECT id FROM questions WHERE title = 'question A'));
+    (SELECT id FROM questions WHERE title = 'question A')),
+  ((SELECT id FROM users WHERE fname = 'joe' AND lname = 'smith'),
+    (SELECT id FROM questions WHERE title = 'question A')),
+  ((SELECT id FROM users WHERE fname = 'mary' AND lname = 'blige'),
+    (SELECT id FROM questions WHERE title = 'question B'));
