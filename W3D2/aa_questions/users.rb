@@ -1,25 +1,12 @@
-class User
+require_relative 'model_base'
+
+class User < ModelBase
+
   attr_accessor :fname, :lname
 
-  def self.all
-    users = QuestionsDatabase.instance.execute("SELECT * FROM users")
-    users.map { |user| User.new(user)}
-  end
-
-  def self.find_by_id(id)
-    user = QuestionsDatabase.instance.execute(<<-SQL, id)
-      SELECT
-        *
-      FROM
-        users
-      WHERE
-        id = ?
-    SQL
-
-    return nil unless user.length > 0
-
-    User.new(user.first)
-  end
+  # def self.all(table)
+  #   super(table)
+  # end
 
   def self.find_by_name(fname, lname)
     user = QuestionsDatabase.instance.execute(<<-SQL, fname, lname)
@@ -51,5 +38,46 @@ class User
   def followed_questions
     QuestionFollow.followed_questions_for_user_id(@id)
   end
+
+  def liked_questions
+    QuestionLike.liked_questions_for_user_id(@id)
+  end
+
+  def average_karma
+    ave = QuestionsDatabase.instance.execute(<<-SQL, @id)
+    SELECT
+      CAST(COUNT(question_likes.user_id) AS FLOAT) / COUNT(DISTINCT(questions.id)) AS average
+    FROM
+      questions
+    LEFT OUTER JOIN
+      question_likes ON questions.id = question_likes.question_id
+    WHERE
+      questions.user_id = ?
+    SQL
+    ave.first["average"]
+  end
+
+  # def save
+  #   if @id
+  #     #update
+  #     QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname, @id)
+  #       UPDATE
+  #         users
+  #       SET
+  #         fname = ?, lname = ?
+  #       WHERE
+  #         id = ?
+  #     SQL
+  #   else
+  #     #insert
+  #     QuestionsDatabase.instance.execute(<<-SQL, @fname, @lname)
+  #       INSERT INTO
+  #         users (fname, lname)
+  #       VALUES
+  #         (?, ?)
+  #     SQL
+  #     @id = QuestionsDatabase.instance.last_insert_row_id
+  #   end
+  # end
 
 end
