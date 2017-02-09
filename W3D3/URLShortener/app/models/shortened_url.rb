@@ -11,10 +11,12 @@
 #
 
 require 'securerandom'
+require 'byebug'
 
 class ShortenedUrl < ActiveRecord::Base
   validates :longurl, :shorturl, :user_id, presence: true
   validates :shorturl, uniqueness: true
+  validate :no_spamming, :nonpremium_max
 
   belongs_to :submitter,
     class_name: :User,
@@ -63,5 +65,27 @@ class ShortenedUrl < ActiveRecord::Base
 
   def num_recent_uniques
     self.visits.where({created_at: 30.minutes.ago..Time.now}).count
+  end
+
+  def no_spamming
+    user = User.find(user_id)
+    urls_submitted = user.submitted_urls
+    if urls_submitted.length <= 5
+      return
+    else
+      time_submitted = urls_submitted[-5].created_at
+      if time_submitted < 1.minute.ago
+        self.errors[:spam] << ": No more than 5 urls per minute"
+      end
+    end
+  end
+
+  def nonpremium_max
+    user = User.find(user_id)
+    urls_submitted = user.submitted_urls
+    if urls_submitted.length >= 5 && user.premium == false
+      self.errors[:url_limit] << "reached for non-premium member. Give us money"
+      print "Can't do it"
+    end
   end
 end
