@@ -21,17 +21,10 @@ class TagTopic < ActiveRecord::Base
     source: :url
 
   def popular_links
-    (<<-SQL
-    SELECT
+    links = Tagging.all.where(tag_id: self.id).map do |element|
+      ShortenedUrl.find(element.id)
+    end
 
-    FROM
-
-    WHERE
-
-    LIMIT
-      5
-    ORDER BY
-      
-    SQL
+    links.sort_by { |link| link.num_clicks }.reverse.take(5).map(&:longurl)
   end
 end
