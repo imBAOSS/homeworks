@@ -60,19 +60,26 @@
           <input type=text id='name'>
 
           <label for='rating'>Rating</label>
-          <input type=radio id='rating'>
 
-            1<option value='1' selected>
-            2<option value='2'>
-            3<option value='3'>
-            4<option value='4'>
-            5<option value='5'>
+            1<input type=radio name='rating' value='1' selected>
+            2<input type=radio name='rating' value='2'>
+            3<input type=radio name='rating' value='3'>
+            4<input type=radio name='rating' value='4'>
+            5<input type=radio name='rating' value='5'>
 
-            <!-- 1<input type=radio id='rating' value='1' selected>
-            2<input type=radio id='rating' value='2'>
-            3<input type=radio id='rating' value='3'>
-            4<input type=radio id='rating' value='4'>
-            5<input type=radio id='rating' value='5'> -->
+          <label for='expertise'>Cooking Expertise</label>
+            <select>
+              <option disabled selected>Select Cooking Experience</option>
+              <option value='Sometimes Cook'>Sometimes Cook</option>
+              <option value='Cook Everyday'>Cook Everyday</option>
+              <option value='Cooking is a Hobby'></option>
+              <option value='Professional Chef'></option>
+            </select>
+
+          <label for='review'>Review</label>
+          <textarea name='review'></textarea>
+
+          <input type=submit value='Submit Review'>
         </form>
       </section>
 
