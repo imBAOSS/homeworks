@@ -1,0 +1,21 @@
+<h1><%= "#{@cat.name}, The Cat" %></h1>
+
+<h2><%= "#{@cat.name}'s Attributes" %></h2>
+<table>
+  <colgroup span="4"></colgroup>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>Color</th>
+    <th>Sex</th>
+  </tr>
+  <tr>
+    <td><%= @cat.name %></td>
+    <td><%= @cat.age %></td>
+    <td><%= @cat.color %></td>
+    <td><%= @cat.sex %></td>
+  </tr>
+</table>
+
+<h2><%= "My Happy Memories of #{@cat.name}" %></h2>
+<p><%= @cat.description %></p>

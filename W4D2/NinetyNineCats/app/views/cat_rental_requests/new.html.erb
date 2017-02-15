@@ -1,0 +1,11 @@
+<h1>Rent-a-Cat</h1>
+
+<form action="cat_rental_requests_url" method="post">
+  <label for="cat"></label>
+  <select id="cat" name="cat_rental_requests[cat_id]">
+    <option disabled="disabled" selected="selected">Select Cat</option>
+    <%= render "cat_requests", cat: @cats %>
+  </select>
+
+  <input type="submit" name="cat_rental_requests[cat_id]">
+</form>

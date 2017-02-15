@@ -1,0 +1,55 @@
+<!--
+  Things to change:
+    - action (done!)
+    - hidden input patch (done!)
+    - pre-filled values
+    - submit button
+-->
+
+  <% if action == :edit %>
+    <% action_url = cat_url(cat) %>
+  <% else %>
+    <% action_url = cats_url %>
+    <% cat = Cat.new %>
+  <% end %>
+
+<form action="<%= action_url %>" method="post">
+  <% if action == :edit %>
+  <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+  <label for="name">Name</label>
+  <input id="name" type="text" name="cat[name]" value="<%= cat.name %>">
+
+  <label for="male">Male</label>
+  <input id="male" type="radio" name="cat[sex]" value="M" <%= "checked" unless cat.sex == "F" %>>
+
+  <label for="female">Female</label>
+  <input id="female" type="radio" name="cat[sex]" value="F" <%= "checked" if cat.sex == "F" %>>
+
+  <label for="color">Color</label>
+  <select id="color" name="cat[color]">
+    <option disabled="disabled" <%= "selected" unless cat.color%>>Choose a Color</option>
+    <option value="brown" <%= "selected" if cat.color == "brown" %>>Brown</option>
+    <option value="gray" <%= "selected" if cat.color == "gray" %>>Gray</option>
+    <option value="white"<%= "selected" if cat.color == "white" %>>White</option>
+    <option value="black"<%= "selected" if cat.color == "black" %>>Black</option>
+    <option value="yellow"<%= "selected" if cat.color == "yellow" %>>Yellow</option>
+    <option value="orange"<%= "selected" if cat.color == "orange" %>>Orange</option>
+  </select>
+
+  <label for="birth_date">Birth Date</label>
+  <input type="date" name="cat[birth_date]" max="<%= Time.now.to_date %>" value = <%= cat.birth_date %>>
+
+  <br>
+
+  <label for="description">Describe your fond memories of this cat:</label>
+
+  <br>
+
+  <textarea id="description" name="cat[description]" rows="8" cols="80"><%= cat.description %></textarea>
+
+  <br>
+
+  <input type="submit" value= "<%= action == :edit ? "Edit Cat" : "Create Cat" %>">
+</form>

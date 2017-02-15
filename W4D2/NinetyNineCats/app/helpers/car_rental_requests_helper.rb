@@ -1,0 +1,2 @@
+module CarRentalRequestsHelper
+end
