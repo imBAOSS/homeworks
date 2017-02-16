@@ -10,6 +10,6 @@
 
 class Band < ActiveRecord::Base
   validates :name, presence: true
-  
-  has_many :tracks
+
+  has_many :albums, dependent: :destroy 
 end

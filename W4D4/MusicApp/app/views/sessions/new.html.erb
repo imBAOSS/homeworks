@@ -1,6 +1,6 @@
-<h1>New User</h1>
+<h2>Sign In</h2>
 
-<form action=" <%= users_url %>" method="post">
+<form action=" <%= session_url %>" method="post">
   <input type="hidden" name="authenticity_token" value="form_authenticity_token">
 
   <label for="email">Email</label>
@@ -13,6 +13,5 @@
 
   <br>
 
-  <input type="submit" value="Register">
-
+  <input type="submit" value="Log In">
 </form>
