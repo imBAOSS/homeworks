@@ -1,10 +1,5 @@
 class AlbumsController < ApplicationController
-  before_action do
-    unless logged_in?
-      redirect_to new_session_url
-      flash[:errors] = "You must be logged in"
-    end
-  end
+  before_action :logged_in?
 
   def index
     @album = Album.all

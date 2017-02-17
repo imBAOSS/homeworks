@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       flash[:errors] = ["Incorrect Credentials"]
     else
       log_in_user!(user)
-      redirect_to bands_url
+      redirect_to :root
     end
   end
 
