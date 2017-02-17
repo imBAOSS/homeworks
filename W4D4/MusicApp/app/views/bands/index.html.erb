@@ -1,27 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Bands</h1>
+<h1>All Bands</h1>
 
 <table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <colgroup span="4"></colgroup>
+  <tr>
+    <th>Artist</th>
+  </tr>
 
-  <tbody>
     <% @bands.each do |band| %>
       <tr>
-        <td><%= band.name %></td>
-        <td><%= link_to 'Show', band %></td>
-        <td><%= link_to 'Edit', edit_band_path(band) %></td>
-        <td><%= link_to 'Destroy', band, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to band.name, band_url(band.id), method: :get %></td>
+        <td><%= link_to "Edit", edit_band_url(band.id), method: :get %></td>
+        <td><%= link_to "Delete", band_url(band.id), method: :delete %></td>
       </tr>
     <% end %>
-  </tbody>
+
 </table>
-
 <br>
-
-<%= link_to 'New Band', new_band_path %>
+<%= link_to "Add Band", new_band_url, method: :get %>
+<br>

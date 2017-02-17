@@ -10,9 +10,9 @@
 
   <label for="album">Album</label>
   <select id="album" name="track[album_id]">
-    <option value=""disabled selected>Select Album</option>
+    <option value=""disabled '<%= "selected" if @track.album_id.nil? %>'>Select Album</option>
     <% Album.all.each do |album| %>
-      <option value="<%= album.id %>"><%= album.name %></option>
+      <option value="<%= album.id %>" '<%= "selected" if @track.album_id == album.id %>'><%= album.name %></option>
     <% end %>
   </select>
 
@@ -24,6 +24,10 @@
   <label for="bonus">Bonus</label>
   <input id="bonus" type="radio" name="track[track_type]" value="bonus">
 
+  <br>
+
+  <label for="lyrics">Lyrics</label>
+  <textarea id="lyrics" name="track[lyrics]" rows="8" cols="80"></textarea>
   <br>
 
   <input type="submit" value="Submit Track">

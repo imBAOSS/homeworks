@@ -1,6 +1,6 @@
 <h1>Editing Track</h1>
 
-<form action="<%= tracks_url %>" method="post">
+<form action="<%= tracks_url(@track) %>" method="post">
   <input type="hidden" name="authenticity_token" value="form_authenticity_token">
   <input type="hidden" name="_method" method="PATCH">
 
@@ -24,6 +24,11 @@
   <label for="bonus">Bonus</label>
   <input id="bonus" type="radio" name="track[track_type]" value="bonus" '<%= "checked" if @track.track_type == 'bonus' %>'>
 
+
+  <br>
+
+  <label for="lyrics">Lyrics</label>
+  <textarea id="lyrics" name="track[lyrics]" rows="8" cols="80"><%= @track.lyrics unless @track.lyrics.nil? %></textarea>
   <br>
 
   <input type="submit" value="Edit Track">

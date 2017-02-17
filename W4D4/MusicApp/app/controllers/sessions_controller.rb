@@ -7,10 +7,10 @@ class SessionsController < ApplicationController
     user = User.find_by_credentials(params[:user][:email], params[:user][:password])
 
     if user.nil?
-      flash[:errors] = ["Incorrect Credentials"]  
+      flash[:errors] = ["Incorrect Credentials"]
     else
       log_in_user!(user)
-      redirect_to user_url(user)
+      redirect_to bands_url
     end
   end
 

@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
-  <%= @track.name %>
+  <h2><%= @track.name %></h2>
+
+  <h4>Lyrics</h4>
+  <%= @track.lyrics %>
+
 </p>
 
-<p>
-  <strong>Album:</strong>
-  <%= @track.album.name %>
-</p>
+<%= link_to "Edit Track", edit_track_url(@track), method: :get %> |
+<%= link_to "Delete Track", track_url(@track), method: :delete %><br>
 
-<%= link_to 'Edit', edit_track_path(@track) %> |
-<%= link_to 'Back', tracks_path %>
+<%= link_to "Back to Album", album_url(@track.album_id), method: :get %>

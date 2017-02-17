@@ -1,4 +1,5 @@
 class TracksController < ApplicationController
+  before_action :logged_in?
 
   def index
     @tracks = Track.all
@@ -10,7 +11,8 @@ class TracksController < ApplicationController
   end
 
   def new
-    @track = Track.new
+    @track = Track.find_by(album_id: params[:album_id]) || Track.new
+    render :new
   end
 
   def edit
@@ -22,7 +24,7 @@ class TracksController < ApplicationController
     @track = Track.new(track_params)
 
       if @track.save
-        redirect_to track_url(@track)
+        redirect_to album_url(@track.album_id)
       else
         flash[:errors] = @track.errors.full_messages
         render :new
@@ -41,7 +43,9 @@ class TracksController < ApplicationController
   end
 
   def destroy
-
+    track = Track.find_by(id: params[:id])
+    redirect_to album_url(track.album_id)
+    track.destroy
   end
 
   private

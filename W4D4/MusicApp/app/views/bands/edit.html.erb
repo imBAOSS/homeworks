@@ -1,6 +1,15 @@
-<h1>Editing Band</h1>
+<h1>Edit Band</h1>
 
-<%= render 'form' %>
+<form action="<%= band_url(@band) %>" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+  <input type="hidden" name="authenticity_token" value="form_authenticity_token">
 
-<%= link_to 'Show', @band %> |
-<%= link_to 'Back', bands_path %>
+  <label for="name">Band Name</label>
+  <input id="name" type="text" name="band[name]" value="<%= @band[:name] %>">
+
+
+  <br>
+
+  <input type="submit" value="Edit Band">
+  <%= button_to "Cancel", band_url(@band), method: :get %>
+</form>

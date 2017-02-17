@@ -1,4 +1,10 @@
 class AlbumsController < ApplicationController
+  before_action do
+    unless logged_in?
+      redirect_to new_session_url
+      flash[:errors] = "You must be logged in"
+    end
+  end
 
   def index
     @album = Album.all
@@ -10,7 +16,7 @@ class AlbumsController < ApplicationController
   end
 
   def new
-    @album = Album.new
+    @album = Album.find_by(band_id: params[:band_id]) || Album.new
     @bands = Band.all
   end
 
@@ -36,8 +42,9 @@ class AlbumsController < ApplicationController
   end
 
   def destroy
-
-
+    album = Album.find_by(id: params[:id])
+    redirect_to band_url(album.band_id)
+    album.destroy
   end
 
   private

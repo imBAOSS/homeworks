@@ -10,10 +10,10 @@
 
   <label for="band">Select Band</label>
   <select id="band" name="album[band_id]">
-    <option value=""disabled selected>Select a Band</option>
+    <option value=""disabled '<%= "selected" if @album.band_id.nil? %>'>Select a Band</option>
     <% return if @bands.empty? %>
     <% @bands.each do |band| %>
-      <option value="<%= band.id %>"><%= band.name %></option>
+      <option value="<%= band.id %>" '<%= "selected" if @album.band_id == band.id %>'><%= band.name %></option>
     <% end %>
   </select>
 

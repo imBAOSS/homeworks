@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>Name:</strong>
-  <%= @album.name %>
+  <h2><%= @album.name %></h2>
+
 </p>
 
 <p>
-  <strong>Band:</strong>
+  <strong>Artist:</strong>
   <%= @album.band.name %>
 </p>
+<table>
+  <colgroup span "3"></colgroup>
+    <% @album.tracks.each do |track| %>
+    <tr>
+      <td><%= link_to track.name, track_url(track), method: :get %></td>
+      <td><%= link_to "Edit", edit_track_url(track), method: :get %></td>
+      <td><%= link_to "Delete", track_url(track), method: :delete %></td>
+    </tr>
+    <% end %>
+</table>
 
-<p>
-  <strong>Album Type:</strong>
-  <%= @album.album_type %>
-</p>
+<br>
 
-<%= link_to 'Edit', edit_album_path(@album) %> |
-<%= link_to 'Back', albums_path %>
+
+<%= link_to "Add Track", new_album_track_url(@album), method: :get %> | <%= link_to "Edit Album", edit_album_url(@album), method: :get %> | <%= link_to "Delete Album", album_url(@album), method: :delete %><br>
+<%= link_to "Back to Band", band_url(@album.band_id), method: :get %>
+<br>
