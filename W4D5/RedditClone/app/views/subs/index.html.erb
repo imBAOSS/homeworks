@@ -1,0 +1,7 @@
+<h1>Sub-Topics</h1>
+
+<% @subs.each do |sub_topic|%>
+  <%= link_to sub_topic.title, sub_url(sub_topic), method: :get %> <br>
+<% end %>
+
+<br>

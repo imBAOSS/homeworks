@@ -1,0 +1,10 @@
+<h1><%= @post.title %></h1>
+<br>
+<p><%= @post.content %></p>
+<br>
+<% @post.comments.each do |comment| %>
+  <%= comment.content %><br>
+  <%= comment.author.username %><br>
+<% end %>
+<br>
+<%= link_to "Add Comment", new_post_comment_url(@post), method: :get %>

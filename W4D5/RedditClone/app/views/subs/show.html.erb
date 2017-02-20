@@ -1,0 +1,7 @@
+<h1><%= @sub.title %></h1>
+
+<% @sub.posts.each do |post| %>
+  <%= link_to post.title, post_url(post), method: :get %> <br>
+<% end %>
+
+<br>
