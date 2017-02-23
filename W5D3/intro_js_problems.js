@@ -15,7 +15,7 @@ function isSubstring(searchString, subString) {
 }
 
 function fizzBuzz(array) {
-  var fbArray = [];
+  var fbArray = new Array ();
 
   for (let i = 0; i < array.length; i++){
     if ( array[i] % 3 && array[i] % 5) {
