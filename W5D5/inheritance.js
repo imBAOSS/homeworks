@@ -1,9 +1,3 @@
-// class Surrogate {
-//   constructor() {
-//
-//   }
-// }
-
 Function.prototype.inherits = function (parentClass) {
   function Surrogate() {}
 
@@ -12,35 +6,30 @@ Function.prototype.inherits = function (parentClass) {
   this.prototype.constructor = this;
 };
 
-class Animal {
-  constructor(name) {
-    this.name = name;
-  }
-
-  eat() {
-    console.log("I'm eating");
-  }
+function Animal(name) {
+  this.name = name;
 }
 
-class Dog {
-  constructor(name) {
-    this.name = name;
-  }
+Animal.prototype.eat = function () {
+  console.log("I'm eating");
+};
 
-  woof() {
-    console.log("Woof!");
-  }
+
+function Dog(name) {
+  this.name = name;
 }
 
-class Cat {
-  constructor(name) {
-    this.name = name;
-  }
+Dog.prototype.woof = function () {
+  console.log("Woof");
+};
 
-  meow() {
-    console.log("Meow!");
-  }
+function Cat(name) {
+  this.name = name;
 }
+
+Cat.prototype.meow = function () {
+  console.log("Meow");
+};
 
 Dog.inherits(Animal);
 Cat.inherits(Animal);
