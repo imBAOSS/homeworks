@@ -18,7 +18,7 @@ MovingObject.prototype.draw = function(ctx) {
     this.radius,
     0,
     2 * Math.PI,
-    false
+    true
   );
 
   ctx.fill();
