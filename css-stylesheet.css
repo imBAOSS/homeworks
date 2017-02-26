@@ -2,7 +2,16 @@ body {
     font-family: Arial, sans-serif;
     background-color: lightslategrey;
     line-height: 1.5;
+    width: 80%;
+    margin: 0 auto;
+}
 
+section {
+  vertical-align: top;
+}
+
+aside {
+  margin-right: 15px;
 }
 
 h1 {
@@ -10,11 +19,15 @@ h1 {
 }
 
 h2 {
-    font-size: 32px;
+    font-size: 28px;
 }
 
 .ingredients-list {
     list-style: square inside;
+}
+
+.ingredients-list li {
+  margin: 15px 0;
 }
 
 ol {
@@ -22,7 +35,18 @@ ol {
 }
 
 header > img {
-    width: 100px;
+  float: left;
+  width: 100px;
+}
+
+nav {
+  float: right;
+}
+
+.cf:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 nav > ul > li > a {
@@ -57,4 +81,32 @@ ol li:nth-of-type(2n) {
 
 h2 + .user-reviews {
   border-top: 1px solid black;
+}
+
+nav li {
+  display: inline-block;
+  padding: 20px;
+}
+
+ol li {
+  margin: 15px 0;
+}
+label {
+  display: block;
+}
+
+#review-form select {
+  margin: 10px 0;
+}
+
+#review-form input[type="text"], select, textarea {
+  width: 220px;
+}
+
+#review-form input[type="submit"] {
+  margin: 10px 0;
+}
+
+footer {
+  float: left;
 }
