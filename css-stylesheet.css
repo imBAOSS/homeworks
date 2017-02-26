@@ -29,3 +29,32 @@ nav > ul > li > a {
     color: inherit;
     text-decoration: none;
 }
+
+input[type="radio"], input[type="submit"], input[type="select"]{
+  cursor: pointer;
+  outline: none;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  background-image: url(./assets/stars.png);
+  width: 25px;
+  height: 25px;
+  vertical-align: bottom;
+}
+
+input[type="submit"]:hover {
+  -webkit-filter: brightness(80%);
+}
+
+input:last-child {
+  background-color: gold;
+}
+
+ol li:nth-of-type(2n) {
+  background-color: lightgrey;
+}
+
+h2 + .user-reviews {
+  border-top: 1px solid black;
+}
