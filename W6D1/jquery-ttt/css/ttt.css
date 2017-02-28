@@ -1,0 +1,50 @@
+h1 {
+  margin: auto;
+  text-align: center;
+}
+
+body {
+  margin: auto;
+  width: 35%;
+}
+
+.ttt {
+  margin: 0 auto;
+}
+
+.rows {
+  width: 400px;
+  justify-content: center;
+}
+
+.square {
+  border-top: 5px solid black;
+  border-left: 5px solid black;
+  list-style: none;
+  height: 100px;
+  width: 100px;
+  float: left;
+  padding: 5px;
+  background-color: gray;
+  font-size: 100px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 80px;
+}
+
+.x {
+  background-color: white;
+}
+
+.o {
+  background-color: white;
+}
+
+.square:last-child {
+  border-right: 5px solid black;
+
+}
+
+.rows:last-child li {
+  border-bottom: 5px solid black;
+}
