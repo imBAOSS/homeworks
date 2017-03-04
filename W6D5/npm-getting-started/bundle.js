@@ -9438,10 +9438,151 @@ module.exports = ReactPropTypesSecret;
 
 /***/ }),
 /* 80 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: Error: ENOENT: no such file or directory, open '/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/package.json'\n    at Error (native)\n    at Object.fs.openSync (fs.js:634:18)\n    at Object.fs.readFileSync (fs.js:502:33)\n    at ConfigChainBuilder.addConfig (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-core/lib/transformation/file/options/build-config-chain.js:146:32)\n    at ConfigChainBuilder.findConfigs (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-core/lib/transformation/file/options/build-config-chain.js:102:30)\n    at buildConfigChain (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-core/lib/transformation/file/options/build-config-chain.js:61:13)\n    at OptionManager.init (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-core/lib/transformation/file/options/option-manager.js:354:58)\n    at File.initOptions (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-core/lib/transformation/file/index.js:216:65)\n    at new File (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-core/lib/transformation/file/index.js:139:24)\n    at Pipeline.transform (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-core/lib/transformation/pipeline.js:46:16)\n    at transpile (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-loader/lib/index.js:46:20)\n    at Object.module.exports (/Users/BAOSS/Dropbox/Programming/AppAcademy/Curriculum/homeworks/W6D5/npm-getting-started/node_modules/babel-loader/lib/index.js:134:16)");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(52);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Calculator = function (_React$Component) {
+  _inherits(Calculator, _React$Component);
+
+  function Calculator() {
+    _classCallCheck(this, Calculator);
+
+    var _this = _possibleConstructorReturn(this, (Calculator.__proto__ || Object.getPrototypeOf(Calculator)).call(this));
+
+    _this.state = { result: 0, num1: "", num2: "" };
+
+    _this.setnum1 = _this.setnum1.bind(_this);
+    _this.setnum2 = _this.setnum2.bind(_this);
+    _this.add = _this.add.bind(_this);
+    _this.subtract = _this.subtract.bind(_this);
+    _this.multiply = _this.multiply.bind(_this);
+    _this.divide = _this.divide.bind(_this);
+    _this.clear = _this.clear.bind(_this);
+    // your code here
+    return _this;
+  }
+
+  // your code here
+
+
+  _createClass(Calculator, [{
+    key: "setnum1",
+    value: function setnum1(e) {
+      var num1 = e.target.value ? parseInt(e.target.value) : "";
+      this.setState({ num1: num1 });
+    }
+  }, {
+    key: "setnum2",
+    value: function setnum2(e) {
+      var num2 = e.target.value ? parseInt(e.target.value) : "";
+      this.setState({ num2: num2 });
+    }
+  }, {
+    key: "add",
+    value: function add(e) {
+      e.preventDefault();
+      var result = this.state.num1 + this.state.num2;
+      this.setState({ result: result });
+    }
+  }, {
+    key: "subtract",
+    value: function subtract(e) {
+      e.preventDefault();
+      var result = this.state.num1 - this.state.num2;
+      this.setState({ result: result });
+    }
+  }, {
+    key: "multiply",
+    value: function multiply(e) {
+      e.preventDefault();
+      var result = this.state.num1 * this.state.num2;
+      this.setState({ result: result });
+    }
+  }, {
+    key: "divide",
+    value: function divide(e) {
+      e.preventDefault();
+      var result = this.state.num1 / this.state.num2;
+      this.setState({ result: result });
+    }
+  }, {
+    key: "clear",
+    value: function clear(e) {
+      e.preventDefault();
+      this.setState({ result: 0, num1: "", num2: "" });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _state = this.state,
+          num1 = _state.num1,
+          num2 = _state.num2,
+          result = _state.result;
+
+      return _react2.default.createElement(
+        "div",
+        null,
+        _react2.default.createElement(
+          "h1",
+          null,
+          result
+        ),
+        _react2.default.createElement("input", { onChange: this.setnum1, type: "text", value: num1 }),
+        _react2.default.createElement("input", { onChange: this.setnum2, type: "text", value: num2 }),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.clear },
+          "Clear"
+        ),
+        _react2.default.createElement("br", null),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.add },
+          "+"
+        ),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.subtract },
+          "-"
+        ),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.multiply },
+          "*"
+        ),
+        _react2.default.createElement(
+          "button",
+          { onClick: this.divide },
+          "/"
+        )
+      );
+    }
+  }]);
+
+  return Calculator;
+}(_react2.default.Component);
+
+exports.default = Calculator;
 
 /***/ }),
 /* 81 */
