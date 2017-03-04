@@ -1,0 +1,14 @@
+{
+  "name": "react_widgets",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./widgets.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack",
+    "start": "webpack-dev-server --inline"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
