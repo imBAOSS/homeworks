@@ -1,3 +1,30 @@
 // Place all the styles related to the api/pokemon controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+ul.pokelist {
+  display: block;
+  list-style: none;
+  justify-content: center;
+  align-items: center;
+
+}
+div.pokeitem{
+  background-color: lightgray;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+li.pokename{
+  font-size: 16px;
+  color: blue;
+}
+
+div.pokeitem:hover > li.pokename{
+  color: black;
+}
+div.pokeitem:hover{
+  background-color: red;
+}
