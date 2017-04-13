@@ -17,6 +17,7 @@ class Link
     # and removes self from list.
     @next.prev = @prev
     @prev.next = @next
+    self
   end
 end
 
@@ -72,7 +73,7 @@ class LinkedList
 
   def remove(key)
     self.each do |link|
-      link.remove if link.key == key
+      return link.remove if link.key == key
     end
   end
 
